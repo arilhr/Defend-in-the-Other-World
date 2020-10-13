@@ -5,7 +5,9 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     public GameObject enemy;
-    private int enemyCount = 0;
+    [SerializeField]
+    private int totalEnemyInSpawn;
+    public LevelManager lvlManager;
     public float minWaitTime, maxWaitTime;
 
     void Start() {
@@ -13,13 +15,13 @@ public class EnemySpawner : MonoBehaviour
     }
 
     IEnumerator EnemySpawn(float minWaitTime, float maxWaitTime) {
-        while (enemyCount < 10) {
+        while (totalEnemyInSpawn > 0) {
             float waitTime = Random.Range(minWaitTime, maxWaitTime);
         
             yield return new WaitForSeconds(waitTime);
+
+            totalEnemyInSpawn--;
             Instantiate(enemy, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
-            enemyCount++;
         }
-        
     }
 }

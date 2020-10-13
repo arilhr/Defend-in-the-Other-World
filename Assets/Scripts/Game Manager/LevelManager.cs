@@ -4,15 +4,11 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public int totalEnemy;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    void LevelCompleted() {
+        if (totalEnemy == 0) {
+            Debug.Log("Level Selesai");
+        }
     }
 }

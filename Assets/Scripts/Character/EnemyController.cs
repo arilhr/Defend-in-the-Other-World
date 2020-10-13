@@ -10,11 +10,13 @@ public class EnemyController : CharacterStats
     protected CharacterController enemyController;
     protected Transform target;
     protected NavMeshAgent enemyAgent;
+    private LevelManager lvlManager;
 
     void Awake() {
         enemyController = GetComponent<CharacterController>();
         enemyAgent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
+        lvlManager = GameObject.FindWithTag("GameManager").GetComponent<LevelManager>();
     }
 
     void Update() {
@@ -54,6 +56,7 @@ public class EnemyController : CharacterStats
 
     void EnemyDie() {
         if (hp <= 0) {
+            lvlManager.totalEnemy--;
             Destroy(gameObject);
         }
     }
